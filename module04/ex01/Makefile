@@ -1,0 +1,36 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: aotsala <aotsala@student.hive.fi>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/09/28 12:03:43 by aotsala           #+#    #+#              #
+#    Updated: 2023/11/14 16:48:34 by aotsala          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME = brain
+CC = c++
+FLAGS = -Wall -Wextra -Werror -std=c++98
+SRC = main.cpp Animal.cpp Cat.cpp Dog.cpp WrongAnimal.cpp WrongCat.cpp Brain.cpp
+OBJ = $(SRC:.cpp=.o)
+RM = rm -f
+
+all:	$(NAME)
+
+$(NAME):	$(OBJ)
+						$(CC) $(FLAGS) $(OBJ) -o $(NAME)
+
+%.o : %.cpp
+						$(CC) $(FLAGS) -c $< -o $@
+
+clean:
+		@$(RM) $(OBJ)
+
+fclean:	clean
+		@$(RM) $(NAME)
+
+re:		fclean all
+
+PHONY: all fclean clean re
